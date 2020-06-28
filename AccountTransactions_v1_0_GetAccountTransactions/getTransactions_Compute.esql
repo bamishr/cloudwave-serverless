@@ -1,0 +1,23 @@
+
+
+CREATE COMPUTE MODULE getTransactions_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE reqRef REFERENCE TO OutputRoot;
+		DECLARE inputParms REFERENCE TO  InputLocalEnvironment.REST.Input;
+		DECLARE trans	NAMESPACE 'http://tempuri.org/Transactions_v1_MessageSet';
+		DECLARE intrvl  INTERVAL CAST('10' AS INTERVAL DAY);
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN('SOAP') NAME 'SOAP';
+		SET OutputRoot.SOAP.Body.trans:AdaptorRequest.trans:accountId = inputParms.Parameters.accountID;
+		
+		MOVE reqRef TO OutputRoot.SOAP.Body.trans:AdaptorRequest;
+		
+		SET reqRef.trans:fromTransactionDate  = COALESCE(inputParms.QueryString.fromDate,(CURRENT_DATE - intrvl));
+		SET reqRef.trans:toTransactionDate  = COALESCE(inputParms.QueryString.toDate,CURRENT_DATE); 
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

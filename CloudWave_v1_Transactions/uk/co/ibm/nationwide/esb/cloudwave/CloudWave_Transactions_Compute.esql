@@ -1,0 +1,13 @@
+BROKER SCHEMA uk.co.ibm.nationwide.esb.cloudwave
+
+
+CREATE COMPUTE MODULE CloudWave_Transactions_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC.Body.AdaptorResponse.accountBalance = InputRoot.SOAP.Body.*:AdaptorRequest.*:accountId;
+		SET OutputRoot.XMLNSC.Body.AdaptorResponse.Test = '1' || SPACE(5) || '1';
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

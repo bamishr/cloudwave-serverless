@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Transactions_v1_MessageSet" targetNamespace="http://tempuri.org/Transactions_v1_MessageSet" xmlns="http://tempuri.org/Transactions_v1_MessageSet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/Transactions_v1_MessageSet" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="Transactions_v1_MessageSetService_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="Transactions_v1_MessageSetSOAP_HTTP_Binding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Transactions_v1_MessageSet" xmlns:mrm="http://tempuri.org/Transactions_v1_MessageSet">
+<xsd:include schemaLocation="Transactions_v1_MessageSetService_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Execute_in">
+    <wsdl:part element="AdaptorRequest" name="AdaptorRequest"/>
+  </wsdl:message>
+  <wsdl:message name="Execute_out">
+    <wsdl:part element="AdaptorResponse" name="AdaptorResponse"/>
+  </wsdl:message>
+  <wsdl:message name="Execute_fault1">
+    <wsdl:part element="ErrorMessage" name="ErrorMessage"/>
+  </wsdl:message>
+  <wsdl:portType name="Transactions_v1_MessageSetPortType">
+    <wsdl:operation name="Execute">
+      <wsdl:input message="Execute_in" name="Execute_Input"/>
+      <wsdl:output message="Execute_out" name="Execute_Output"/>
+      <wsdl:fault message="Execute_fault1" name="Execute_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Transactions_v1_MessageSetSOAP_HTTP_Binding" type="Transactions_v1_MessageSetPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Execute">
+      <soap:operation soapAction="Execute"/>
+      <wsdl:input name="Execute_Input">
+        <soap:body parts="AdaptorRequest" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="Execute_Output">
+        <soap:body parts="AdaptorResponse" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Execute_Fault">
+        <soap:fault name="Execute_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Transactions_v1_MessageSetSOAP_HTTP_Service">
+    <wsdl:port binding="Transactions_v1_MessageSetSOAP_HTTP_Binding" name="Transactions_v1_MessageSetSOAP_HTTP_Port">
+      <soap:address location="http://localhost:7800/Transactions_v1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/Transactions_v1_MessageSet" xmlns="http://tempuri.org/Transactions_v1_MessageSet" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:mrm="http://tempuri.org/Transactions_v1_MessageSet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/Transactions_v1_MessageSet" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+                                                                                                          <xsd:element name="accountId" type="xsd:string"/>
+            <xsd:element name="fromTransactionDate" type="xsd:date"/>
+            <xsd:element name="toTransactionDate" type="xsd:date"/>
+            <xsd:element name="faultCode" type="xsd:int"/>
+            <xsd:element name="faultMessage" type="xsd:string"/>
+            <xsd:element name="transactionAmount" type="xsd:string"/>
+            <xsd:element name="accountBalance" type="xsd:string"/>
+            <xsd:element name="transactionReference" type="xsd:string"/>
+            <xsd:element name="transactionDate" type="xsd:dateTime"/>
+            <xsd:complexType name="AdaptorRequest">
+        <xsd:sequence>
+          <xsd:element ref="mrm:accountId"/>
+          <xsd:element ref="mrm:fromTransactionDate"/>
+          <xsd:element ref="mrm:toTransactionDate"/>
+        </xsd:sequence>
+      </xsd:complexType>
+            <xsd:complexType name="AdaptorResponse">
+        <xsd:sequence>
+          <xsd:element ref="mrm:transactionAmount"/>
+          <xsd:element ref="mrm:transactionDate"/>
+          <xsd:element ref="mrm:accountBalance"/>
+          <xsd:element ref="mrm:transactionReference"/>
+        </xsd:sequence>
+      </xsd:complexType>
+            <xsd:complexType name="ErrorMessage">
+        <xsd:sequence>
+          <xsd:element ref="mrm:faultCode"/>
+          <xsd:element ref="mrm:faultMessage"/>
+        </xsd:sequence>
+      </xsd:complexType>
+            <xsd:element ibmSchExtn:docRoot="true" name="AdaptorRequest" type="mrm:AdaptorRequest"/>
+            <xsd:element ibmSchExtn:docRoot="true" name="AdaptorResponse" type="mrm:AdaptorResponse"/>
+            <xsd:element ibmSchExtn:docRoot="true" name="ErrorMessage" type="mrm:ErrorMessage"/>
+        </xsd:schema>

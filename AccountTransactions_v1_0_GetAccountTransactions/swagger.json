@@ -1,0 +1,51 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "AccountTransactions_v1_0_GetAccountTransactions",
+    "version" : "1.0.0",
+    "description" : "AccountTransactions_v1_0_GetAccountTransactions"
+  },
+  "paths" : {
+    "/{accountID}/transactions" : {
+      "get" : {
+        "operationId" : "getTransactions",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "404" : {
+            "description" : "Operation Not Found.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve transactions",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "accountID",
+          "in" : "path",
+          "type" : "string",
+          "description" : "Account number"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/accounts/v1/"
+}

@@ -1,0 +1,23 @@
+
+
+Importing file: C:\Jatin\Workspaces\ace11_workspace\Transactions_v1_MessageSet\Transactions_v1_MessageSetService.wsdl
+
+Copying source WSDL Transactions_v1_MessageSetService.wsdl to Transactions_v1_MessageSetService.wsdl.
+The WSDL import will proceed with bindings Transactions_v1_MessageSetSOAP_HTTP_Binding.
+Creating wsdl schema document for file:///C:/Jatin/Workspaces/ace11_workspace/Transactions_v1_MessageSet/Transactions_v1_MessageSetService.wsdl.
+Parsing wsdl binding {http://tempuri.org/Transactions_v1_MessageSet}Transactions_v1_MessageSetSOAP_HTTP_Binding.
+Parsing wsdl binding input Execute.
+Parsing wsdl binding output Execute.
+Parsing wsdl binding fault Execute_Fault.
+Processing doc style for operation Execute.
+Populating WSDL schema Transactions_v1_MessageSetService.xsd.
+Creating file Transactions_v1_MessageSetService.xsd in the workspace.
+Creating file Transactions_v1_MessageSetService_InlineSchema1.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.249 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,33 @@
+
+
+CREATE COMPUTE MODULE getTransactions_MapResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		DECLARE backendRespRef REFERENCE TO InputRoot.SOAP.Body.*:AdaptorResponse;
+		DECLARE outRespRef 	   REFERENCE TO OutputRoot;
+		DECLARE outTransRespRef REFERENCE TO OutputRoot;
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') NAME 'JSON';
+		
+		SET OutputRoot.JSON.Data.accountId = backendRespRef.accountId;
+		
+		CREATE LASTCHILD OF OutputRoot.JSON.Data AS outTransRespRef IDENTITY(JSON.Array)transactions;		
+		
+		FOR transRef AS backendRespRef.transactionData.transaction[] DO
+			
+			CREATE LASTCHILD OF outTransRespRef AS outRespRef NAME 'Item';
+			
+			SET outRespRef.transactionAmount = transRef.transactionAmount;
+			SET outRespRef.transactionDate   = transRef.transactionDate;
+			SET outRespRef.accountBalance    = transRef.accountBalance;
+			SET outRespRef.transactionReference = transRef.transactionReference;
+			SET outRespRef.transactionFor 	    = transRef.transactionFor;
+			
+		END FOR;	
+
+		RETURN TRUE;
+		
+	END;
+
+END MODULE;
