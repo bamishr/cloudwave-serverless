@@ -1,0 +1,10 @@
+BROKER SCHEMA uk.co.ibm.nationwide.esb.cloudwave
+
+
+CREATE COMPUTE MODULE CloudWave_Transactions_SaveToEnvAndReturn
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.accessToken = InputRoot.JSON.Data.access_token;
+		RETURN TRUE;
+	END;
+END MODULE;

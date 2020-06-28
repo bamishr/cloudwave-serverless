@@ -1,0 +1,31 @@
+BROKER SCHEMA uk.co.ibm.nationwide.esb.cloudwave
+
+
+CREATE COMPUTE MODULE CloudWave_Transactions_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE refToAdaptorResponse REFERENCE TO OutputLocalEnvironment;
+		DECLARE refToTransactions REFERENCE TO InputRoot.JSON.Data.transactions;
+		DECLARE sp1 NAMESPACE 'http://tempuri.org/Transactions_v1_MessageSet';
+		DECLARE accountId CHARACTER Environment.accountId;
+		DECLARE index INTEGER 1;
+		MOVE refToTransactions FIRSTCHILD;
+		
+		
+		
+		CREATE LASTCHILD OF OutputRoot.XMLNSC AS refToAdaptorResponse NAMESPACE sp1 NAME 'AdaptorResponse';
+		WHILE LASTMOVE(refToTransactions) DO
+			IF(refToTransactions.accountId = accountId) THEN
+				SET refToAdaptorResponse.transactionData.transaction[index].transactionAmount = refToTransactions.transactionAmount;
+				SET refToAdaptorResponse.transactionData.transaction[index].transactionDate = refToTransactions.transactionDate;
+				SET refToAdaptorResponse.transactionData.transaction[index].transactionReference = refToTransactions.transactionReference;
+				SET refToAdaptorResponse.transactionData.transaction[index].accountBalance = refToTransactions.accountBalance;
+				SET index = index + 1;
+			END IF;
+		MOVE refToTransactions NEXTSIBLING REPEAT NAME;
+		END WHILE;
+	--	SET OutputRoot.XMLNSC.Body.AdaptorResponse.accountBalance = InputRoot.SOAP.Body.*:AdaptorRequest.*:accountId;
+	--	SET OutputRoot.XMLNSC.Body.AdaptorResponse.Test = '1' || SPACE(5) || '1';
+		RETURN TRUE;
+	END;
+END MODULE;

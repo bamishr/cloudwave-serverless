@@ -1,16 +1,20 @@
 FROM ibmcom/ace
 
-ENV GITCODE=CloudWave_v1_Transactions
+RUN pwd
 
-ENV BAR2=CloudWave_v1_Transactions_bad.bar
+ENV GITCODE=IBMACEDEPLOYMENT_JAT_master
+
+ENV BAR2=CloudWave_v1_Transactions_JATIN.bar
 
 COPY ./$GITCODE /tmp
+
+#RUN bash -c 'cp -r /var/jenkins_home/workspace/pipelinejob_master/ /tmp'
 
 RUN ls -laR /tmp/*
 
 #RUN bash -c 'source /opt/ibm/ace-11/server/bin/mqsiprofile'
 
-RUN bash -c 'mqsipackagebar -a /tmp/CloudWave_v1_Transactions_JAT.bar -w /tmp/ -k CloudWave_v1_Transactions -i'
+RUN bash -c 'mqsipackagebar -a /tmp/CloudWave_v1_Transactions_JATIN.bar -w /tmp/ -k CloudWave_v1_Transactions -i'
 
 #RUN '. /opt/ibm/ace-11/server/bin/ mqsiprofile && mqsipackagebar'
 

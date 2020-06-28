@@ -15,7 +15,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="377,276" computeExpression="esql://routine/#getTransactions_Compute.Main">
         <translation xmi:type="utility:ConstantString" string="MapRequest"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="522,275" wsdlOperationMode="gateway" useHTTPTransport="true" webServiceURL="http://18.221.224.94:7800/Transactions_v1" sslProtocol="TLS" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="522,275" wsdlOperationMode="gateway" useHTTPTransport="true" webServiceURL="http://18.217.121.89:7800/Transactions_v1" requestTimeout="15" sslProtocol="TLS" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="673,277" computeExpression="esql://routine/#getTransactions_MapResponse.Main">

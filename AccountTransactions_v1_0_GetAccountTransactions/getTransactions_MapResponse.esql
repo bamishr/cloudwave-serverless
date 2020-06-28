@@ -12,6 +12,8 @@ CREATE COMPUTE MODULE getTransactions_MapResponse
 		
 		SET OutputRoot.JSON.Data.accountId = backendRespRef.accountId;
 		
+		SET OutputRoot.HTTPResponseHeader."Access-Control-Allow-Origin" = '*';
+		
 		CREATE LASTCHILD OF OutputRoot.JSON.Data AS outTransRespRef IDENTITY(JSON.Array)transactions;		
 		
 		FOR transRef AS backendRespRef.transactionData.transaction[] DO

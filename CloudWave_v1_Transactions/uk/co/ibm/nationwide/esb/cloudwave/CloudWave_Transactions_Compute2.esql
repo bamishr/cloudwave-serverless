@@ -1,0 +1,12 @@
+BROKER SCHEMA uk.co.ibm.nationwide.esb.cloudwave
+
+CREATE COMPUTE MODULE CloudWave_Transactions_Compute2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties.CodedCharSetId = 1208;
+		SET OutputRoot.HTTPRequestHeader."Content-Type" = 'application/x-www-form-urlencoded';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.grant_type = 'urn:ibm:params:oauth:grant-type:apikey';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.apikey = 'vjdhv55n1GR0Xxc406bzMn1MSdaQxNNnB3wjy1KgtMZz';
+		RETURN TRUE;
+	END;
+END MODULE;
